@@ -1,0 +1,38 @@
+.book__item {
+  display: flex;
+  width: 30%;
+}
+
+.book__wrap-img {
+  max-width: 120px;
+  margin-right: 20px;
+}
+
+.book__img {
+  max-width: 100%;
+  height: 100%;
+}
+
+.book__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-blue);
+}
+
+.book__price {
+  font-size: 18px;
+}
+
+.book__button {
+  width: 120px;
+  height: 40px;
+  color: #fff;
+  background-color: var(--color-blue);
+  border-radius: 2px;
+}

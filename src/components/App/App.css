@@ -1,0 +1,41 @@
+:root {
+  --color-blue: #3498db;
+  --color-green: #2ecc71;
+  --color-red: #e74c3c;
+  --color-grey: #bdc3c7;
+  --color-yellow: #f1c40f;
+  --color-asphalt: #34495e;
+  --color-turquoise: #1abc9c;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

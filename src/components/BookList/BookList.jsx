@@ -19,13 +19,9 @@ const BookList = props => {
   const { books } = props;
 
   return (
-    <ul>
+    <ul className="book__list">
       {books.map(book => {
-        return (
-          <li key={book.id}>
-            <BookListItem book={book} />
-          </li>
-        );
+        return <BookListItem key={book.id} book={book} />;
       })}
     </ul>
   );

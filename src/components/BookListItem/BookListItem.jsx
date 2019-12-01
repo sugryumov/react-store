@@ -3,13 +3,21 @@ import React from "react";
 import "./BookListItem.css";
 
 const BookListItem = ({ book }) => {
-  const { title, author } = book;
+  const { title, author, price, coverImage } = book;
 
   return (
-    <>
-      <span>{title}</span>
-      <span>{author}</span>
-    </>
+    <li className="book__item">
+      <div className="book__wrap-img">
+        <img className="book__img" src={coverImage} alt={title} />
+      </div>
+      <div className="book__details">
+        <p className="book__title">{title}</p>
+        <p className="book__author">{author}</p>
+        <p className="book__price">${price}</p>
+
+        <button className="book__button">Add to cart</button>
+      </div>
+    </li>
   );
 };
 
