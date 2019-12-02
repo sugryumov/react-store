@@ -1,6 +1,7 @@
 .book__item {
   display: flex;
   width: 30%;
+  height: 150px;
 }
 
 .book__wrap-img {
