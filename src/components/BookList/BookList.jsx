@@ -2,21 +2,36 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { withBookstoreService } from "../hoc";
-import { booksLoaded } from "../../actions";
+import { booksLoaded, booksRequested, booksError } from "../../actions";
 import BookListItem from "../BookListItem";
+import Spinner from "../Spinner";
+import ErrorIndicator from "../ErrorIndicator";
 
 import "./BookList.css";
 
 const BookList = props => {
   useEffect(() => {
-    const { bookstoreService, booksLoaded } = props;
-    const data = bookstoreService.getBooks();
+    const { bookstoreService, booksLoaded, booksRequested, booksError } = props;
 
-    booksLoaded(data);
+    booksRequested();
+
+    bookstoreService
+      .getBooks()
+      .then(data => booksLoaded(data))
+      .catch(error => booksError(error));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { books } = props;
+  const { books, loading, error } = props;
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <ErrorIndicator />;
+  }
 
   return (
     <ul className="book__list">
@@ -27,14 +42,18 @@ const BookList = props => {
   );
 };
 
-const mapStateToProps = ({ books }) => {
+const mapStateToProps = ({ books, loading, error }) => {
   return {
-    books
+    books,
+    loading,
+    error
   };
 };
 
 const mapDispatchToProps = {
-  booksLoaded
+  booksLoaded,
+  booksRequested,
+  booksError
 };
 
 export default withBookstoreService()(

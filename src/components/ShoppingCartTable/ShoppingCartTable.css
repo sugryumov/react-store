@@ -1,6 +1,7 @@
 .shopping-cart__table {
   width: 100%;
   text-align: center;
+  border-spacing: 0;
 }
 
 .table__header th {
