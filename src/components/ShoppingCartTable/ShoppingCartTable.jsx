@@ -1,8 +1,48 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./ShoppingCartTable.css";
 
-const ShoppingCartTable = () => {
+const ShoppingCartTable = ({
+  items,
+  total,
+  onIncrease,
+  onDecrease,
+  onDelete
+}) => {
+  const renderRow = (item, index) => {
+    const { id, title, count, total } = item;
+
+    return (
+      <tr key={id}>
+        <td>{index + 1}</td>
+        <td>{title}</td>
+        <td>{count}</td>
+        <td>${total}</td>
+        <td>
+          <button
+            onClick={() => onIncrease(id)}
+            className="shopping-cart__button"
+          >
+            +
+          </button>
+          <button
+            onClick={() => onDecrease(id)}
+            className="shopping-cart__button"
+          >
+            -
+          </button>
+          <button
+            onClick={() => onDelete(id)}
+            className="shopping-cart__button"
+          >
+            del
+          </button>
+        </td>
+      </tr>
+    );
+  };
+
   return (
     <div className="shopping-cart">
       <h2 className="shopping-cart__title">Your Order</h2>
@@ -18,24 +58,27 @@ const ShoppingCartTable = () => {
           </tr>
         </thead>
 
-        <tbody className="table__body">
-          <tr>
-            <td>1</td>
-            <td>sara</td>
-            <td>2</td>
-            <td>40$</td>
-            <td>
-              <button className="shopping-cart__button">+</button>
-              <button className="shopping-cart__button">-</button>
-              <button className="shopping-cart__button">del</button>
-            </td>
-          </tr>
-        </tbody>
+        <tbody className="table__body">{items.map(renderRow)}</tbody>
       </table>
 
-      <p className="shopping-cart__total">Total: $150</p>
+      <p className="shopping-cart__total">Total: ${total}</p>
     </div>
   );
 };
 
-export default ShoppingCartTable;
+const mapStateToProps = ({ cartItems, orderTotal }) => {
+  return {
+    items: cartItems,
+    total: orderTotal
+  };
+};
+
+const mapDispatchToProps = () => {
+  return {
+    onIncrease: id => console.log("onIncrease", id),
+    onDecrease: id => console.log("onDecrease", id),
+    onDelete: id => console.log("onDelete", id)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable);
