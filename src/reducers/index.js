@@ -1,3 +1,9 @@
+import {
+  FETCH_BOOKS_REQUEST,
+  FETCH_BOOKS_SUCCESS,
+  FETCH_BOOKS_ERROR
+} from "../constants";
+
 const initialState = {
   books: [],
   loading: true,
@@ -6,19 +12,19 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "BOOKS_REQUESTED":
+    case FETCH_BOOKS_REQUEST:
       return {
         books: [],
         loading: true,
         error: null
       };
-    case "BOOKS_LOADED":
+    case FETCH_BOOKS_SUCCESS:
       return {
         books: action.payload,
         loading: false,
         error: null
       };
-    case "BOOKS_ERROR":
+    case FETCH_BOOKS_ERROR:
       return {
         books: [],
         loading: false,
