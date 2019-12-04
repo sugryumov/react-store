@@ -2,7 +2,9 @@ import {
   FETCH_BOOKS_REQUEST,
   FETCH_BOOKS_SUCCESS,
   FETCH_BOOKS_ERROR,
-  BOOK_ADDED_TO_CART
+  BOOK_ADDED_TO_CART,
+  BOOK_REMOVED_TO_CART,
+  ALL_BOOKS_REMOVED_TO_CART
 } from "../constants";
 
 const booksRequested = () => {
@@ -41,4 +43,23 @@ const bookAddedToCart = bookId => {
   };
 };
 
-export { fetchBooks, bookAddedToCart };
+const bookRemovedToCart = bookId => {
+  return {
+    type: BOOK_REMOVED_TO_CART,
+    payload: bookId
+  };
+};
+
+const allBooksRemovedToCart = bookId => {
+  return {
+    type: ALL_BOOKS_REMOVED_TO_CART,
+    payload: bookId
+  };
+};
+
+export {
+  fetchBooks,
+  bookAddedToCart,
+  bookRemovedToCart,
+  allBooksRemovedToCart
+};
