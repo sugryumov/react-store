@@ -1,14 +1,9 @@
 import React from "react";
 
 import BookList from "../BookList";
-import ShoppingCartTable from "../ShoppingCartTable";
 
 const HomePage = () => {
-  return (
-    <>
-      <BookList /> <ShoppingCartTable />
-    </>
-  );
+  return <BookList />;
 };
 
 export default HomePage;

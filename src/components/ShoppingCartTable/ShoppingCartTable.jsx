@@ -9,13 +9,14 @@ import {
   allBooksRemovedToCart
 } from "../../actions";
 
-const ShoppingCartTable = ({
-  items,
-  total,
-  onIncrease,
-  onDecrease,
-  onDelete
-}) => {
+const ShoppingCartTable = ({ items, onIncrease, onDecrease, onDelete }) => {
+  const totalPrice = () => {
+    let sum = 0;
+    items.map(item => (sum += item.total));
+
+    return sum;
+  };
+
   const renderRow = (item, index) => {
     const { id, title, count, total } = item;
 
@@ -67,15 +68,14 @@ const ShoppingCartTable = ({
         <tbody className="table__body">{items.map(renderRow)}</tbody>
       </table>
 
-      <p className="shopping-cart__total">Total: ${total}</p>
+      <p className="shopping-cart__total">Total: ${totalPrice()}</p>
     </div>
   );
 };
 
-const mapStateToProps = ({ shoppingCart: { cartItems, orderTotal } }) => {
+const mapStateToProps = ({ shoppingCart: { cartItems } }) => {
   return {
-    items: cartItems,
-    total: orderTotal
+    items: cartItems
   };
 };
 
